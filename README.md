@@ -1,14 +1,14 @@
-# SISTEM PENYEWAAN ASRAMA MAHASISWA
+<div align="center">
 
+  <img src="unsulbarlogo.jpg" alt="Logo Unsulbar" width="200"/>
 
-![](unsulbarlogo.jpg)
+  <h1>SISTEM PENYEWAAN ASRAMA MAHASISWA</h1>
 
+  <p><strong>Ratri Pramudita</strong><br/>D0223321</p> <br>
 
-**Ratri Pramudita**  
-D0223321
+  <h1> FRAMEWORK WEB BASED </h1>
 
-
-
+</div>
 
 ## FRAMEWORK WEB BASED  
 **2025**
