@@ -1,88 +1,97 @@
-SISTEM PENYEWAAN ASRAMA MAHASISWA
+# SISTEM PENYEWAAN ASRAMA MAHASISWA
 
-
- 
-
-
-Ratri Pramudita
+**Ratri Pramudita**  
 D0223321
 
+## FRAMEWORK WEB BASED  
+**2025**
 
+---
 
-FRAMEWORK WEB BASED
-2025
+## 1. Role dan Fitur-fiturnya
 
- 
- 
- 
-1.	Role dan fitur-fiturnya
-1.	Role sebagai admin
-	Menambah, mengedit, atau menghapus data ruangan (nomor kamar, kapasitas, gedung, harga sewa).
-	Lihat Seluruh Data Penyewaan dan Pembayaran (Semua Asrama)
-2.	Role sebagai petugas asrama
-	Login
-	Lihat Daftar Permintaan Penyewaan di Asrama yang Dikelola
-	Verifikasi Permintaan Penyewaan
-	Mengubah status pembayaran (misalnya dari pending menjadi selesai).
-	Lihat Riwayat Sewa di Asrama yang Dikelola
-3.	Role sebagai mahasiswa :
-	login
-	Menelusuri daftar ruangan yang tersedia untuk disewa.
-	Mengajukan permohonan penyewaan ruangan 
-2.	Tabel pada database, beserta field dan tipe datanya
-1.	Tabel user
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Nama	String	Nama pengguna
-Email	String	Email pengguna, harus uniqe
-Password	String	
-Role	enum	(Admin, staf, mahasiswa)
-Created_at	Auto	Waktu pembuatan pertama
-Updated_at	Auto	Waktu update terakhir
+### 1. Admin
+- Menambah, mengedit, atau menghapus data ruangan (nomor kamar, kapasitas, gedung, harga sewa)
+- Lihat Seluruh Data Penyewaan dan Pembayaran (Semua Asrama)
 
-2.	Tabel ruangan
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Nomor_Kamar	Int	Nomor kamar
-Gedung	String	Gedung yang digunakan
-Kapsitas	Int	Jumlah anggota perkamar
-Harga_sewa	Decimal	Harga sewa kamar per enam bulan
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+### 2. Petugas Asrama
+- Login  
+- Lihat Daftar Permintaan Penyewaan di Asrama yang Dikelola  
+- Verifikasi Permintaan Penyewaan  
+- Mengubah status pembayaran (misalnya dari pending menjadi selesai)  
+- Lihat Riwayat Sewa di Asrama yang Dikelola
 
-3.	Tabel penyewaan 
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-User_id	Int	Terhubung dengan tabel user 
-Ruangan_id	Int	Terhubung dengan tabel ruangan
-Tanggal_sewa	Date	Tanggal penempatan pertama
-Akhir_sewa	Date	Tanggal penempatan terakhir
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+### 3. Mahasiswa
+- Login  
+- Menelusuri daftar ruangan yang tersedia untuk disewa  
+- Mengajukan permohonan penyewaan ruangan  
 
-4.	Tabel pembayaran
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Penyewaan_id	Int	Terhubung dengan tabel penyewaan
-Total_Biaya	Decimal	Total biaya penyewaan 
-Status	Enum(Selesai, pending)	Status pembayaran penyewa
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+---
 
+## 2. Tabel pada Database, beserta Field dan Tipe Datanya
 
+### Tabel `user`
 
- 
- 
-3.	Jenis relasi dan tabel yang berelasi
-1.	Tabel user dengan tabel penyewaan
-Yaitu relasi one to many, Dimana satu user bisa menyewa ruangan lebih dari satu kali
-Primary key di tabel user : {id}
-Foreign key di tabel penyewaan : {user_id}
-2.	Tabel ruangan dengan tabel penyewaan
-Yaitu relasi one to many, Dimana satu ruangan bisa disewa berkali-kali oleh mahasiswa (bergantian waktu)
-Primary key di tabel ruangan : {id}
-Foreign key di tabel penyewaan : {ruangan_id}
-3.	Tabel penyewaan dan tabel pembayaran
-Yaitu relasi one to one, Dimana Setiap penyewaan hanya memiliki satu pembayaran terkait.
-Primary key di tabel penyewaan : {id}
-Foreign key di tabel pembayaran : {penyewaan_id}
+| Nama Field   | Tipe Data | Keterangan                         |
+|--------------|-----------|-------------------------------------|
+| id           | int       | Primary key                        |
+| nama         | string    | Nama pengguna                      |
+| email        | string    | Email pengguna, harus unik         |
+| password     | string    |                                   |
+| role         | enum      | (admin, staf, mahasiswa)           |
+| created_at   | auto      | Waktu pembuatan pertama            |
+| updated_at   | auto      | Waktu update terakhir              |
+
+### Tabel `ruangan`
+
+| Nama Field     | Tipe Data | Keterangan                            |
+|----------------|-----------|----------------------------------------|
+| id             | int       | Primary key                           |
+| nomor_kamar    | int       | Nomor kamar                           |
+| gedung         | string    | Gedung yang digunakan                 |
+| kapasitas      | int       | Jumlah anggota per kamar              |
+| harga_sewa     | decimal   | Harga sewa kamar per enam bulan       |
+| created_at     | timestamp | Waktu pembuatan pertama               |
+| updated_at     | timestamp | Waktu update terakhir                 |
+
+### Tabel `penyewaan`
+
+| Nama Field     | Tipe Data | Keterangan                            |
+|----------------|-----------|----------------------------------------|
+| id             | int       | Primary key                           |
+| user_id        | int       | Terhubung dengan tabel user           |
+| ruangan_id     | int       | Terhubung dengan tabel ruangan        |
+| tanggal_sewa   | date      | Tanggal penempatan pertama            |
+| akhir_sewa     | date      | Tanggal penempatan terakhir           |
+| created_at     | timestamp | Waktu pembuatan pertama               |
+| updated_at     | timestamp | Waktu update terakhir                 |
+
+### Tabel `pembayaran`
+
+| Nama Field     | Tipe Data | Keterangan                            |
+|----------------|-----------|----------------------------------------|
+| id             | int       | Primary key                           |
+| penyewaan_id   | int       | Terhubung dengan tabel penyewaan      |
+| total_biaya    | decimal   | Total biaya penyewaan                 |
+| status         | enum      | (selesai, pending)                    |
+| created_at     | timestamp | Waktu pembuatan pertama               |
+| updated_at     | timestamp | Waktu update terakhir                 |
+
+---
+
+## 3. Jenis Relasi dan Tabel yang Berelasi
+
+1. **Tabel `user` dengan tabel `penyewaan`**  
+   Relasi: *One to Many*, di mana satu user bisa menyewa lebih dari satu kali.  
+   - Primary Key: `user.id`  
+   - Foreign Key: `penyewaan.user_id`
+
+2. **Tabel `ruangan` dengan tabel `penyewaan`**  
+   Relasi: *One to Many*, di mana satu ruangan bisa disewa berkali-kali.  
+   - Primary Key: `ruangan.id`  
+   - Foreign Key: `penyewaan.ruangan_id`
+
+3. **Tabel `penyewaan` dengan tabel `pembayaran`**  
+   Relasi: *One to One*, di mana satu penyewaan hanya memiliki satu pembayaran.  
+   - Primary Key: `penyewaan.id`  
+   - Foreign Key: `pembayaran.penyewaan_id`
