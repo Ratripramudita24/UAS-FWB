@@ -1,82 +1,61 @@
-SISTEM PENYEWAAN ASRAMA MAHASISWA
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
- 
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Ratri Pramudita
-D0223321
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Learning Laravel
 
-FRAMEWORK WEB BASED
-2025
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
- 
- 
- 
-1.	Role dan fitur-fiturnya
-1.	Role sebagai admin
-	Menambah, mengedit, atau menghapus data ruangan (nomor kamar, kapasitas, gedung, harga sewa).
-	Lihat Seluruh Data Penyewaan dan Pembayaran (Semua Asrama)
-2.	Role sebagai petugas asrama
-	Login
-	Lihat Daftar Permintaan Penyewaan di Asrama yang Dikelola
-	Verifikasi Permintaan Penyewaan
-	Mengubah status pembayaran (misalnya dari pending menjadi selesai).
-	Lihat Riwayat Sewa di Asrama yang Dikelola
-3.	Role sebagai mahasiswa :
-	login
-	Menelusuri daftar ruangan yang tersedia untuk disewa.
-	Mengajukan permohonan penyewaan ruangan 
-2.	Tabel pada database, beserta field dan tipe datanya
-1.	Tabel user
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Nama	String	Nama pengguna
-Email	String	Email pengguna, harus uniqe
-Password	String	
-Role	enum	(Admin, staf, mahasiswa)
-Created_at	Auto	Waktu pembuatan pertama
-Updated_at	Auto	Waktu update terakhir
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-2.	Tabel ruangan
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Nomor_Kamar	Int	Nomor kamar
-Gedung	String	Gedung yang digunakan
-Kapsitas	Int	Jumlah anggota perkamar
-Harga_sewa	Decimal	Harga sewa kamar per enam bulan
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-3.	Tabel penyewaan 
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-User_id	Int	Terhubung dengan tabel user
-Ruangan_id	Int	Terhubung dengan tabel ruangan
-Tanggal_sewa	Date	Tanggal penempatan pertama
-Akhir_sewa	Date	Tanggal penempatan terakhir
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+## Laravel Sponsors
 
-4.	Tabel pembayaran
-Nama field	Tipe data	Keterangan
-Id	Int	Primary key
-Penyewaan_id	Int	Terhubung dengan tabel penyewaan
-Total_Biaya	Decimal	Total biaya penyewaan 
-Status	Enum(Selesai, pending)	Status pembayaran penyewa
-Created_at	Timestamp	Waktu pembuatan pertama
-Updated_at	Timestamp	Waktu update terakhir
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
+### Premium Partners
 
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development/)**
+- **[Active Logic](https://activelogic.com)**
 
- 
- 
-3.	Jenis relasi dan tabel yang berelasi
-1.	Tabel user dengan tabel penyewaan
-Yaitu relasi one to many, Dimana satu user bisa menyewa ruangan lebih dari satu kali
-2.	Tabel ruangan dengan tabel penyewaan
-Yaitu relasi one to many, Dimana satu ruangan bisa disewa berkali-kali oleh mahasiswa (bergantian waktu)
-3.	Tabel penyewaan dan tabel pembayaran
-Yaitu relasi one to one, Dimana Setiap penyewaan hanya memiliki satu pembayaran terkait.
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
