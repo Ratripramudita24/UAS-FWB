@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up(): void
     {
         Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password')->unique();
-            $table->enum('role', ['admin', 'staf', 'mahasiswa']);
+            $table->string('Nama');
+            $table->string('Email')->unique();
+            $table->string('Password')->unique();
+            $table->enum('Role', ['admin', 'staf', 'mahasiswa']);
             $table->timestamps();
         });
         Schema::create('ruangan', function (Blueprint $table) {
@@ -27,17 +27,17 @@ return new class extends Migration
         });
         Schema::create('penyewaan', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->constrained('user')->onDelete();
-            $table->integer('ruangan_id')->constrained('ruangan')->onDelete();
-            $table->integer('tanggal_sewa');
-            $table->date('akhir_sewa');
+            $table->integer('User_id')->constrained('user')->onDelete();
+            $table->integer('Ruangan_id')->constrained('ruangan')->onDelete();
+            $table->integer('Tanggal_sewa');
+            $table->date('Akhir_sewa');
             $table->timestamps();
         });
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->int('penyewaan_id')->constrained('penyewaan')->onDelete();
-            $table->decimal('total biaya', 10, 2);
-            $table->enum('status', ['selesai', 'pending']);
+            $table->int('Penyewaan_id')->constrained('penyewaan')->onDelete();
+            $table->decimal('Total biaya', 10, 2);
+            $table->enum('Status', ['selesai', 'pending']);
             $table->timestamps();
         });
     }
