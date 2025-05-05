@@ -43,7 +43,7 @@
 |--------------|-----------|-------------------------------------|
 | id           | BigInteger| Primary key , auto increment        |
 | nama         | varchar   | Nama pengguna                       |
-| email        | varchar   | Email pengguna, tidak boleh ada yang sama         |
+| email        | varchar   | Email pengguna, tidak boleh ada yang sama|
 | password     | varchar   | password tidak boleh sama           |
 | role         | enum      | (admin, staf, mahasiswa)            |
 | created_at   | timestamp | Waktu pembuatan pertama             |
@@ -65,7 +65,7 @@
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|----------------------------------------|
-| id             | integer   | Primary key                           |
+| id             | BigInteger| Primary key                           |
 | user_id        | integer   | Terhubung dengan tabel user           |
 | ruangan_id     | integer   | Terhubung dengan tabel ruangan        |
 | tanggal_sewa   | date      | Tanggal penempatan pertama            |
@@ -76,7 +76,7 @@
 ### Tabel `pembayaran`
 
 | Nama Field     | Tipe Data | Keterangan                            |
-|----------------|-----------|----------------------------------------|
+|----------------|-----------|---------------------------------------|
 | id             | BigInteger| Primary key                           |
 | penyewaan_id   | integer   | Terhubung dengan tabel penyewaan      |
 | total_biaya    | decimal   | Total biaya penyewaan                 |
