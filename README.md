@@ -2,7 +2,7 @@
     <h1> SISTEM PENYEWAAN ASRAMA MAHASISWA </h1>
 
 
-  <img src="unsulbarlogo.jpg" alt="Logo Unsulbar" width="200"/>
+  <img src="unsulbar.png" alt="Logo Unsulbar" width="200"/>
 
 
   <p><strong>Ratri Pramudita</strong><br/>D0223321</p> <br>

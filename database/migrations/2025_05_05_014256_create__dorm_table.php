@@ -35,7 +35,7 @@ return new class extends Migration
         });
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->int('Penyewaan_id')->constrained('penyewaan')->onDelete();
+            $table->integer('Penyewaan_id')->constrained('penyewaan')->onDelete();
             $table->decimal('Total biaya', 10, 2);
             $table->enum('Status', ['selesai', 'pending']);
             $table->timestamps();
