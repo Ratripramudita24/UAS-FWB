@@ -90,15 +90,15 @@
 
 1. **Tabel `user` dengan tabel `penyewaan`**  
    Relasi: *One to Many*, di mana satu user bisa menyewa lebih dari satu kali.  
-   - Primary Key: `user.id`  
-   - Foreign Key: `penyewaan.user_id`
+   <!-- - Primary Key: `user.id`  
+   - Foreign Key: `penyewaan.user_id` -->
 
 2. **Tabel `ruangan` dengan tabel `penyewaan`**  
    Relasi: *One to Many*, di mana satu ruangan bisa disewa berkali-kali.  
-   - Primary Key: `ruangan.id`  
-   - Foreign Key: `penyewaan.ruangan_id`
+   <!-- - Primary Key: `ruangan.id`  
+   - Foreign Key: `penyewaan.ruangan_id` -->
 
 3. **Tabel `penyewaan` dengan tabel `pembayaran`**  
    Relasi: *One to One*, di mana satu penyewaan hanya memiliki satu pembayaran.  
-   - Primary Key: `penyewaan.id`  
-   - Foreign Key: `pembayaran.penyewaan_id`
+   <!-- - Primary Key: `penyewaan.id`  
+   - Foreign Key: `pembayaran.penyewaan_id` -->
