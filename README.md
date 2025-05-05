@@ -39,24 +39,24 @@
 
 ### Tabel `user`
 
-| Nama Field   | Tipe Data | Keterangan                         |
+| Nama Field   | Tipe Data | Keterangan                          |
 |--------------|-----------|-------------------------------------|
-| id           | int       | Primary key                        |
-| nama         | varchar    | Nama pengguna                      |
-| email        | varchar    | Email pengguna, harus unik         |
-| password     | varchar    |                                   |
-| role         | enum      | (admin, staf, mahasiswa)           |
-| created_at   | timestamp      | Waktu pembuatan pertama            |
-| updated_at   | timestamp      | Waktu update terakhir              |
+| id           | BigInteger| Primary key , auto increment        |
+| nama         | varchar   | Nama pengguna                       |
+| email        | varchar   | Email pengguna, tidak boleh ada yang sama         |
+| password     | varchar   | password tidak boleh sama           |
+| role         | enum      | (admin, staf, mahasiswa)            |
+| created_at   | timestamp | Waktu pembuatan pertama             |
+| updated_at   | timestamp | Waktu update terakhir               |
 
 ### Tabel `ruangan`
 
 | Nama Field     | Tipe Data | Keterangan                            |
-|----------------|-----------|----------------------------------------|
-| id             | int       | Primary key                           |
-| nomor_kamar    | int       | Nomor kamar                           |
-| gedung         | varchar    | Gedung yang digunakan                 |
-| kapasitas      | int       | Jumlah anggota per kamar              |
+|----------------|-----------|---------------------------------------|
+| id             | BigInteger| Primary key, auto increment           |
+| nomor_kamar    | integer   | Nomor kamar                           |
+| gedung         | varchar   | Gedung yang digunakan                 |
+| kapasitas      | integer   | Jumlah anggota per kamar              |
 | harga_sewa     | decimal   | Harga sewa kamar per enam bulan       |
 | created_at     | timestamp | Waktu pembuatan pertama               |
 | updated_at     | timestamp | Waktu update terakhir                 |
@@ -65,9 +65,9 @@
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|----------------------------------------|
-| id             | int       | Primary key                           |
-| user_id        | int       | Terhubung dengan tabel user           |
-| ruangan_id     | int       | Terhubung dengan tabel ruangan        |
+| id             | integer   | Primary key                           |
+| user_id        | integer   | Terhubung dengan tabel user           |
+| ruangan_id     | integer   | Terhubung dengan tabel ruangan        |
 | tanggal_sewa   | date      | Tanggal penempatan pertama            |
 | akhir_sewa     | date      | Tanggal penempatan terakhir           |
 | created_at     | timestamp | Waktu pembuatan pertama               |
@@ -77,8 +77,8 @@
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|----------------------------------------|
-| id             | int       | Primary key                           |
-| penyewaan_id   | int       | Terhubung dengan tabel penyewaan      |
+| id             | BigInteger| Primary key                           |
+| penyewaan_id   | integer   | Terhubung dengan tabel penyewaan      |
 | total_biaya    | decimal   | Total biaya penyewaan                 |
 | status         | enum      | (selesai, pending)                    |
 | created_at     | timestamp | Waktu pembuatan pertama               |
