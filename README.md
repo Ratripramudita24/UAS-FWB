@@ -42,12 +42,12 @@
 | Nama Field   | Tipe Data | Keterangan                         |
 |--------------|-----------|-------------------------------------|
 | id           | int       | Primary key                        |
-| nama         | string    | Nama pengguna                      |
-| email        | string    | Email pengguna, harus unik         |
-| password     | string    |                                   |
+| nama         | varchar    | Nama pengguna                      |
+| email        | varchar    | Email pengguna, harus unik         |
+| password     | varchar    |                                   |
 | role         | enum      | (admin, staf, mahasiswa)           |
-| created_at   | auto      | Waktu pembuatan pertama            |
-| updated_at   | auto      | Waktu update terakhir              |
+| created_at   | timestamp      | Waktu pembuatan pertama            |
+| updated_at   | timestamp      | Waktu update terakhir              |
 
 ### Tabel `ruangan`
 
@@ -55,7 +55,7 @@
 |----------------|-----------|----------------------------------------|
 | id             | int       | Primary key                           |
 | nomor_kamar    | int       | Nomor kamar                           |
-| gedung         | string    | Gedung yang digunakan                 |
+| gedung         | varchar    | Gedung yang digunakan                 |
 | kapasitas      | int       | Jumlah anggota per kamar              |
 | harga_sewa     | decimal   | Harga sewa kamar per enam bulan       |
 | created_at     | timestamp | Waktu pembuatan pertama               |
