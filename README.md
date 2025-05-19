@@ -56,8 +56,6 @@
 |----------------|-----------|---------------------------------------|
 | id             | BigInteger| Primary key                           |
 | user_id        | BigInteger| Terhubung dengan tabel user           |
-| fakultas       | varchar   | fakultas pengguna                     |
-| prodi          | varchar   | prodi pengguna                        |
 | alamat         | varchar   | Alamat pengguna                       |
 | no_telepon     |varchar    | Nomor telepon pengguna                |
 | created_at     | timestamp | Waktu pembuatan pertama               |
