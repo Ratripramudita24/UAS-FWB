@@ -46,8 +46,22 @@
 | email        | varchar   | Email pengguna, tidak boleh ada yang sama|
 | password     | varchar   | password tidak boleh sama           |
 | role         | enum      | (admin, staf, mahasiswa)            |
+| nim          | varchar   | Hanya diisi jika rolenya mahasiswa  |
 | created_at   | timestamp | Waktu pembuatan pertama             |
 | updated_at   | timestamp | Waktu update terakhir               |
+
+### Tabel `user_profile`
+
+| Nama Field     | Tipe Data | Keterangan                            |
+|----------------|-----------|---------------------------------------|
+| id             | BigInteger| Primary key                           |
+| user_id        | BigInteger| Terhubung dengan tabel user           |
+| fakultas       | varchar   | fakultas pengguna                     |
+| prodi          | varchar   | prodi pengguna                        |
+| alamat         | varchar   | Alamat pengguna                       |
+| no_telepon     |varchar    | Nomor telepon pengguna                |
+| created_at     | timestamp | Waktu pembuatan pertama               |
+| updated_at     | timestamp | Waktu update terakhir                 |
 
 ### Tabel `ruangan`
 
@@ -58,47 +72,60 @@
 | gedung         | varchar   | Gedung yang digunakan                 |
 | kapasitas      | integer   | Jumlah anggota per kamar              |
 | harga_sewa     | decimal   | Harga sewa kamar per enam bulan       |
+| status         | enum      | Tersedia atau Tidak_tersedia          |
 | created_at     | timestamp | Waktu pembuatan pertama               |
 | updated_at     | timestamp | Waktu update terakhir                 |
 
-### Tabel `penyewaan`
+### Tabel `fasilitas`
+
+| Nama Field     | Tipe Data | Keterangan                             |
+|----------------|-----------|----------------------------------------|
+| id             | BigInteger| Primary key                            |
+| nama_fasilitas | varchar   | fasilitas yang tersedia                |
+| created_at     | timestamp | Waktu pembuatan pertama                |
+| updated_at     | timestamp | Waktu update terakhir                  |
+
+### Tabel `fasilitas_ruangan`
 
 | Nama Field     | Tipe Data | Keterangan                            |
-|----------------|-----------|----------------------------------------|
-| id             | BigInteger| Primary key                           |
-| user_id        | integer   | Terhubung dengan tabel user           |
-| ruangan_id     | integer   | Terhubung dengan tabel ruangan        |
-| tanggal_sewa   | date      | Tanggal penempatan pertama            |
-| akhir_sewa     | date      | Tanggal penempatan terakhir           |
-| created_at     | timestamp | Waktu pembuatan pertama               |
-| updated_at     | timestamp | Waktu update terakhir                 |
+|----------------|-----------|---------------------------------------|
+| ruangan_id     | BigInteger| Terhubung dengan tabel penyewaan      |
+| fasilitas_id   | BigInteger| Total biaya penyewaan                 |
 
-### Tabel `pembayaran`
+### Tabel `sewa`
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|---------------------------------------|
 | id             | BigInteger| Primary key                           |
-| penyewaan_id   | integer   | Terhubung dengan tabel penyewaan      |
-| total_biaya    | decimal   | Total biaya penyewaan                 |
-| status         | enum      | (selesai, pending)                    |
+| user_id        | BigInteger| Terhubung dengan tabel user           |
+| ruangan_id     | BigInteger| Terhubung dengan tabel ruangan        |
+| tanggal_sewa   | date      | Tanggal penempatan pertama            |
+| status         | enum      | (pending/disetujui/ditolak)           |
+| jumlah_bayar   |decimal(10,2)| total yang harus dibayar            |
+| bukti_pembayaran| varchar  | berupa nomor referensi transaksi      |
+| tanggal_bayar  | date      | Tanggal wakru bayar                   |
 | created_at     | timestamp | Waktu pembuatan pertama               |
 | updated_at     | timestamp | Waktu update terakhir                 |
+
+
 
 ---
 
 ## 3. Jenis Relasi dan Tabel yang Berelasi
 
-1. **Tabel `user` dengan tabel `penyewaan`**  
-   Relasi: *One to Many*, di mana satu user bisa menyewa lebih dari satu kali.  
+1. **Tabel 'user' dengan tabel 'user_profile'**  
+   Relasi: *One to One*, Setiap pengguna memiliki satu profil yang menyimpan informasi tambahan seperti fakultas, program studi, alamat, dan nomor telepon..  
    <!-- - Primary Key: `user.id`  
    - Foreign Key: `penyewaan.user_id` -->
 
-2. **Tabel `ruangan` dengan tabel `penyewaan`**  
-   Relasi: *One to Many*, di mana satu ruangan bisa disewa berkali-kali.  
+2. **Tabel 'user' dengan tabel 'sewa'**  
+   Relasi: *One to Many*, Satu pengguna dapat melakukan beberapa penyewaan kamar pada waktu yang berbeda..  
    <!-- - Primary Key: `ruangan.id`  
    - Foreign Key: `penyewaan.ruangan_id` -->
 
-3. **Tabel `penyewaan` dengan tabel `pembayaran`**  
+3. **Tabel 'ruangan' dengan tabel 'sewa'**  
    Relasi: *One to One*, di mana satu penyewaan hanya memiliki satu pembayaran.  
    <!-- - Primary Key: `penyewaan.id`  
    - Foreign Key: `pembayaran.penyewaan_id` -->
+4. **Tabel 'ruangan' dengan tabel 'fasilitas' melalui tabel 'fasilitas_ruangan'**  
+   Relasi: *Many to Many*, Satu ruangan dapat memiliki banyak fasilitas, dan satu fasilitas dapat tersedia di banyak ruangan.  
