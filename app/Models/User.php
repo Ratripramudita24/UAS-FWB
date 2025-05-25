@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,26 +11,35 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    /**
+     * Kolom yang dapat diisi (fillable).
+     */
     protected $fillable = [
-        'id',
-        'Name',
-        'Email',
+        'name',
+        'email',
         'Password',
         'Role',
+        'NIM',
+        'email',
     ];
 
-
+    /**
+     * Kolom yang disembunyikan saat model diubah ke array atau JSON.
+     */
     protected $hidden = [
-        'password',
+        'Password',
         'remember_token',
     ];
 
-    
-    protected function casts(): array
+    /**
+     * Casting kolom ke tipe data tertentu.
+     */
+    protected $casts = [
+        'email' => 'datetime',
+    ];
+    public function profile()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasOne(UserProfile::class);
     }
+
 }

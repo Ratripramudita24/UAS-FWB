@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name'      => 'Admin',
-                'Email'     => 'admin@example.com',
-                'Password'  => 'admin123', // Pastikan terenkripsi
+                'email'     => 'admin@example.com',
+                'password'  => Hash::make('admin123'), // Pastikan terenkripsi
                 'Role'      => 'admin',
                 'NIM'       => null,
                 'created_at'=> now(),
@@ -25,8 +25,8 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'      => 'Staf',
-                'Email'     => 'staf@example.com',
-                'Password'  => 'staf123',
+                'email'     => 'staf@example.com',
+                'password'  => Hash::make('staf123'),
                 'Role'      => 'staf',
                 'NIM'       => null,
                 'created_at'=> now(),
@@ -34,8 +34,8 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'      => 'Mahasiswa',
-                'Email'     => 'mahasiswa@example.com',
-                'Password'  => 'mahasiswa123',
+                'email'     => 'mahasiswa@example.com',
+                'password'  => Hash::make('mahasiswa123'),
                 'Role'      => 'mahasiswa',
                 'NIM'       => '1234567890',
                 'created_at'=> now(),

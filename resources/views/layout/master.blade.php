@@ -26,7 +26,6 @@
 
     @yield('content')
 
-
      <!-- Bootstrap core JavaScript-->
      <script src="admin/vendor/jquery/jquery.min.js"></script>
      <script src="admin/bootstrap/js/bootstrap.bundle.min.js"></script>
