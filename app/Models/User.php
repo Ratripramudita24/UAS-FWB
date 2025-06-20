@@ -9,37 +9,54 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
-     * Kolom yang dapat diisi (fillable).
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
      */
     protected $fillable = [
         'name',
         'email',
-        'Password',
-        'Role',
-        'NIM',
-        'email',
+        'password',
+        'role',
+        'NIM'
+
     ];
+    public function userProfile(){
+        return $this->hasOne((UserProfile::class));
+    }
+    public function sewa(){
+        return $this->hasMany((Sewa::class));
+    }
+    public function pivot()
+    {
+        return $this->hasMany(Favorit::class, 'user_id', 'ruangan_id');
+    }
 
     /**
-     * Kolom yang disembunyikan saat model diubah ke array atau JSON.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
      */
     protected $hidden = [
-        'Password',
+        'password',
         'remember_token',
     ];
 
     /**
-     * Casting kolom ke tipe data tertentu.
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    protected $casts = [
-        'email' => 'datetime',
-    ];
-    public function profile()
+    protected function casts(): array
     {
-        return $this->hasOne(UserProfile::class);
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 
 }

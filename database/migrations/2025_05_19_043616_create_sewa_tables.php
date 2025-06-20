@@ -11,21 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sewa', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Primary key
-
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('ruangan_id');
-
+        Schema::create('sewas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('ruangan_id')->constrained('ruangans')->onDelete('cascade');
             $table->date('tanggal_sewa');
             $table->enum('status', ['pending', 'disetujui', 'ditolak'])->default('pending');
-
             $table->decimal('jumlah_bayar', 10, 2);
             $table->string('bukti_pembayaran');
-            $table->date('tanggal_bayar');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('ruangan_id')->references('id')->on('ruangan')->onDelete('cascade');
         });
     }
 
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sewa');
+        Schema::dropIfExists('sewas');
     }
 };

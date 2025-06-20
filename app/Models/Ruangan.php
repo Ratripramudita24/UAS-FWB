@@ -9,7 +9,7 @@ class Ruangan extends Model
 {
     use HasFactory;
 
-    protected $table = 'ruangan'; // Nama tabel
+    protected $table = 'ruangans'; // Nama tabel
 
     protected $fillable = [
         'nomor_kamar',
@@ -18,9 +18,16 @@ class Ruangan extends Model
         'harga_sewa',
         'status',
     ];
-    public function fasilitas()
+    // Relasi One to Many ke Sewa
+    public function sewa()
     {
-        return $this->belongsToMany(Fasilitas::class, 'fasilitas_ruangan', 'ruangan_id', 'fasilitas_id');
+        return $this->hasMany(Sewa::class);
     }
 
+    // Relasi Many to Many ke Favorit melalui tabel pivot 
+    public function pivot()
+    {
+        return $this->hasMany(Favorit::class, 'ruangan_id', 'user_id')
+        ->withTimestamps();
+    }
 }

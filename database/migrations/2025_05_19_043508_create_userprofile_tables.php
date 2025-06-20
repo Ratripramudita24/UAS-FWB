@@ -11,19 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_profile', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Primary key
-            $table->unsignedBigInteger('user_id'); // Foreign key ke tabel users
-            $table->string('alamat');
-            $table->string('no_telepon');
+        Schema::create('user_profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     });
     }
 
 
     public function down(): void
     {
-        Schema::dropIfExists('user_profile');
+        Schema::dropIfExists('user_profiles');
     }
 };

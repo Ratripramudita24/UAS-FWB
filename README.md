@@ -19,17 +19,15 @@
 
 ### 1. Admin
 - Menambah, mengedit, atau menghapus data ruangan (nomor kamar, kapasitas, gedung, harga sewa)
-- Lihat Seluruh Data Penyewaan dan Pembayaran (Semua Asrama)
+- Lihat riwayat Data Penyewaan
 
 ### 2. Petugas Asrama
 - Login  
 - Lihat Daftar Permintaan Penyewaan di Asrama yang Dikelola  
-- Verifikasi Permintaan Penyewaan  
-- Mengubah status pembayaran (misalnya dari pending menjadi selesai)  
-- Lihat Riwayat Sewa di Asrama yang Dikelola
+- Verifikasi Permintaan Penyewaan
 
 ### 3. Mahasiswa
-- Login  
+- Login
 - Menelusuri daftar ruangan yang tersedia untuk disewa  
 - Mengajukan permohonan penyewaan ruangan  
 
@@ -37,7 +35,7 @@
 
 ## 2. Tabel pada Database, beserta Field dan Tipe Datanya
 
-### Tabel `user`
+### Tabel `users`
 
 | Nama Field   | Tipe Data | Keterangan                          |
 |--------------|-----------|-------------------------------------|
@@ -50,7 +48,7 @@
 | created_at   | timestamp | Waktu pembuatan pertama             |
 | updated_at   | timestamp | Waktu update terakhir               |
 
-### Tabel `user_profile`
+### Tabel `user_profiles`
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|---------------------------------------|
@@ -61,7 +59,7 @@
 | created_at     | timestamp | Waktu pembuatan pertama               |
 | updated_at     | timestamp | Waktu update terakhir                 |
 
-### Tabel `ruangan`
+### Tabel `rooms`
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|---------------------------------------|
@@ -90,7 +88,7 @@
 | ruangan_id     | BigInteger| Terhubung dengan tabel penyewaan      |
 | fasilitas_id   | BigInteger| Total biaya penyewaan                 |
 
-### Tabel `sewa`
+### Tabel `sewas`
 
 | Nama Field     | Tipe Data | Keterangan                            |
 |----------------|-----------|---------------------------------------|
@@ -116,14 +114,14 @@
    <!-- - Primary Key: `user.id`  
    - Foreign Key: `penyewaan.user_id` -->
 
-2. **Tabel 'user' dengan tabel 'sewa'**  
+2. **Tabel 'user' dengan tabel 'sewas'**  
    Relasi: *One to Many*, Satu pengguna dapat melakukan beberapa penyewaan kamar pada waktu yang berbeda..  
    <!-- - Primary Key: `ruangan.id`  
    - Foreign Key: `penyewaan.ruangan_id` -->
 
-3. **Tabel 'ruangan' dengan tabel 'sewa'**  
-   Relasi: *One to One*, di mana satu penyewaan hanya memiliki satu pembayaran.  
-   <!-- - Primary Key: `penyewaan.id`  
-   - Foreign Key: `pembayaran.penyewaan_id` -->
-4. **Tabel 'ruangan' dengan tabel 'fasilitas' melalui tabel 'fasilitas_ruangan'**  
+3. **Tabel 'rooms' dengan tabel 'sewas'**  
+   Relasi: *One to Many*, di mana satu ruangan bisa memiliki banyak penyewaan.  
+   
+
+4. **Tabel 'rooms' dengan tabel 'fasilitas' melalui tabel 'fasilitas_ruangan'**  
    Relasi: *Many to Many*, Satu ruangan dapat memiliki banyak fasilitas, dan satu fasilitas dapat tersedia di banyak ruangan.  

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fasilitas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama_fasilitas');
+        Schema::create('pivots', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('ruangan_id')->constrained('ruangans')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fasilitas');
+        Schema::dropIfExists('pivots');
     }
 };

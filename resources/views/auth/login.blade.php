@@ -1,104 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f3f3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        .login-container {
-            background: #fff;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+    <title>Login</title>
 
-        .login-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #555;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .error {
-            color: red;
-            font-size: 0.85rem;
-        }
-
-        button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
-            background-color: #3490dc;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2779bd;
-        }
-
-        .session-error {
-            color: red;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-    </style>
+    <!-- Fonts & Styles -->
+    <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700,900" rel="stylesheet">
+    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div class="login-container">
-        <h2>Login</h2>
 
-        @if (session('error'))
-            <div class="session-error">{{ session('error') }}</div>
-        @endif
+<body class="bg-gradient-primary">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
 
-        <form action="{{ route('validasi') }}" method="POST">
-            @csrf
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                    </div>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ ('email') }}">
-            @error('email')
-                <div class="error">{{ $message }}</div>
-            @enderror
+                                    @if (session('error'))
+                                        <div class="text-danger text-center mb-3 font-weight-bold">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            @error('password')
-                <div class="error">{{ $message }}</div>
-            @enderror
+                                    <form class="user" method="POST" action="{{ route('svlogin') }}">
+                                        @csrf
 
-            <button type="submit">Login</button>
-        </form>
+                                        <div class="form-group">
+                                            <input type="email" name="email"
+                                                class="form-control form-control-user @error('email') is-invalid @enderror"
+                                                id="email" placeholder="Enter Email Address..." value="{{ old('email') }}">
+                                            @error('email')
+                                                <small class="text-danger pl-3">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="password"
+                                                class="form-control form-control-user @error('password') is-invalid @enderror"
+                                                id="password" placeholder="Password">
+                                            @error('password')
+                                                <small class="text-danger pl-3">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </button>
+                                    </form>
+
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{('lihatregister')}}">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 </body>
+
 </html>

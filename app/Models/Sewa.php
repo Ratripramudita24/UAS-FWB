@@ -9,8 +9,6 @@ class Sewa extends Model
 {
     use HasFactory;
 
-    protected $table = 'sewa';
-
     protected $fillable = [
         'user_id',
         'ruangan_id',
@@ -18,18 +16,18 @@ class Sewa extends Model
         'status',
         'jumlah_bayar',
         'bukti_pembayaran',
-        'tanggal_bayar',
     ];
 
-    // Relasi ke User
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi ke Ruangan
+    // Relasi Many to One ke Ruangan
     public function ruangan()
     {
         return $this->belongsTo(Ruangan::class);
     }
+
 }
