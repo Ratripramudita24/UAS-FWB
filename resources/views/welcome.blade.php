@@ -30,8 +30,8 @@
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{('login')}}">Log in</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{('lihatregister')}}">Create An account</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Log in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('lihatregister')}}">Create An account</a></li>
                     </ul>
                 </div>
             </div>

@@ -23,7 +23,11 @@ class AutentikasiController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $user = auth()->user();
+        if($user->role == 'admin' || $user->role == 'staf'){
+            return view('admin.dashboard');
+        }
+
     }
     public function dashboardMahasiswa(){
         return view('Mahasiswa.dashboardMahasiswa');

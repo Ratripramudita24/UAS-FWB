@@ -5,6 +5,7 @@ use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\StafController;
 use App\Http\Middleware\AdminMinddleware;
+use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\MahasiswaMinddleware;
 use App\Http\Middleware\StafMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -15,14 +16,19 @@ Route::get('/', function () {
 });
 
 
-// Route::middleware(['guest'])->group(function(){
+// Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [AutentikasiController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::middleware([GuestMiddleware::class])->group(function(){
     Route::get('/lihatregister', [AutentikasiController::class, 'lihatregister'])->name('lihatregister');
     Route::post('/svregister', [AutentikasiController::class, 'svregister'])->name('svregister');
     Route::get('/login', [AutentikasiController::class, 'login'])->name('login');
     Route::post('/svlogin', [AutentikasiController::class, 'svlogin'])->name('svlogin');
-    Route::get('/dashboardMahasiswa', [AutentikasiController::class, 'dashboardMahasiswa'])->name('dahsboardMahasiswa');
-    Route::get('/dashboard', [AutentikasiController::class, 'dashboard'])->name('dashboard');
-// });
+});
 
 
 Route::middleware([AdminMinddleware::class])->group(function(){
@@ -46,6 +52,7 @@ Route::middleware([StafMiddleware::class])->group(function(){
 
 
 Route::middleware([MahasiswaMinddleware::class])->group(function(){
+    Route::get('/dashboardMahasiswa', [AutentikasiController::class, 'dashboardMahasiswa'])->name('dahsboardMahasiswa');
     Route::get('/lihatSewaRuangan', [MahasiswaController::class, 'lihatRuanganMahasiswa'])->name('lihatRuanganMahasiswa');
     Route::get('/cariPesan/{id}', [MahasiswaController::class, 'cariPesan'])->name('cariPesan');
     Route::post('/mulaiSewa/{id}', [MahasiswaController::class, 'mulaiSewa'])->name('mulaiSewa');
